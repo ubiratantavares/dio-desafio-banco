@@ -2,18 +2,18 @@ package one.digitalinnovation.model;
 
 public abstract class Conta implements IConta {
 
-    private static final int AGENCIA_PADRAO = 1;
+    private static final int AGENCIA = 1;
     private static int SEQUENCIAL = 1;
 
     protected int agencia;
     protected int numero;
     protected double saldo;
-    protected Cliente cliente;
 
-    public Conta(Cliente cliente) {
-        this.agencia = Conta.AGENCIA_PADRAO;
+
+    public Conta(double saldo) {
+        this.agencia = Conta.AGENCIA;
         this.numero = SEQUENCIAL++;
-        this.cliente = cliente;
+        this.saldo = saldo;
     }
 
     public int getAgencia() {
@@ -41,10 +41,8 @@ public abstract class Conta implements IConta {
         contaDestino.depositar(valor);
     }
 
-    protected void imprimirInformacoes() {
-        System.out.println(String.format("Agência: %d", this.agencia));
-        System.out.println(String.format("Número: %d", this.numero));
-        System.out.println(String.format("Cliente: %s", this.cliente.getNome()));
-        System.out.println(String.format("Saldo: %.2f", this.saldo));
+    @Override
+    public String toString() {
+        return "Conta{" + "agencia=" + agencia + ", numero=" + numero + ", saldo=" + saldo + '}';
     }
 }
